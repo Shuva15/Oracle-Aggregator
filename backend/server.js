@@ -9,16 +9,26 @@ app.use(cors());
 // Initialize Pyth connection
 const connection = new PriceServiceConnection("https://hermes.pyth.network");
 
-const priceId = "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43";
+const priceIds = {
+  BTC: "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+  ETH: "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
+}
 
-// API endpoint to fetch the latest price
-app.get('/api/price', async (req, res) => {
+// Endpoint to fetch price based on cryptocurrency
+app.get('/api/price/:crypto', async (req, res) => {
+  const { crypto } = req.params;
+
+  // Check if the requested cryptocurrency exists in priceIds
+  if (!priceIds[crypto]) {
+    return res.status(400).json({ error: 'Invalid cryptocurrency' });
+  }
   try {
-    const prices = await connection.getLatestPriceFeeds([priceId]);
+    // Fetch the latest price using the Price ID from the Pyth network
+    const prices = await connection.getLatestPriceFeeds([priceIds[crypto]]);
     const price = prices[0].price.price / Math.pow(10, -prices[0].price.expo);
-    console.log(prices, price)
     res.json({ price });
   } catch (error) {
+    console.error('Error fetching price:', error);
     res.status(500).json({ error: 'Failed to fetch price data' });
   }
 });
