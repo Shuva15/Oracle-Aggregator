@@ -6,7 +6,7 @@ const Home = () => {
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCrypto, setSelectedCrypto] = useState("SOL");
+  const [selectedCrypto, setSelectedCrypto] = useState("ETH");
 
   const navigate = useNavigate();
   const handleClick = () => {
