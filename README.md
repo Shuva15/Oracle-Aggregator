@@ -41,9 +41,13 @@ Use the dropdown menu to select a cryptocurrency.
 View the average price fetched from Pyth, Chainlink, and Band Protocol oracles.
 
 # Technologies
-Frontend: React, Tailwind CSS
-Backend: Node.js, Express
-Oracles: Pyth, Chainlink, Band Protocol
+**Frontend**: React, Tailwind CSS
+**Backend**: Node.js, Express
+**Oracles**: Pyth, Chainlink, Band Protocol
+
+# Screenshots
+
+
 
 # Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
