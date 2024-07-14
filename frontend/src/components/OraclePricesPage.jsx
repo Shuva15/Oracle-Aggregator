@@ -16,10 +16,12 @@ const OraclePricesPage = () => {
       setAveragePrice(response.data.averagePrice);
       const pythPrice = response.data.pythPrice;
       const chainlinkPrice = response.data.chainlinkPrice;
+      const bandPrice = response.data.bandPrice;
 
       setOraclePrices([
         { oracleName: 'Pyth Oracle', price: pythPrice },
-        { oracleName: 'Chainlink', price: chainlinkPrice }
+        { oracleName: 'Chainlink', price: chainlinkPrice },
+        { oracleName: 'Band Protocol', price: bandPrice}
       ]);
     } catch (error) {
       setError('Failed to fetch prices');
@@ -56,21 +58,21 @@ const OraclePricesPage = () => {
               </thead>
               <tbody>
                 <tr className="text-center">
-                  <td className="border px-4 py-2 font-semibold" rowSpan={oraclePrices.length + 1}>
+                  <td className="border px-4 py-2 font-bold" rowSpan={oraclePrices.length + 1}>
                     {cryptoFromUrl}
                   </td>
-                  <td className="border px-4 py-2">{oraclePrices[0]?.oracleName}</td>
-                  <td className="border px-4 py-2">{oraclePrices[0]?.price}</td>
+                  <td className="border px-4 py-2 font-semibold">{oraclePrices[0]?.oracleName}</td>
+                  <td className="border px-4 py-2">${oraclePrices[0]?.price}</td>
                 </tr>
                 {oraclePrices.slice(1).map((oracle, index) => (
                   <tr key={index + 1} className="text-center">
-                    <td className="border px-4 py-2">{oracle.oracleName}</td>
-                    <td className="border px-4 py-2">{oracle.price}</td>
+                    <td className="border px-4 py-2 font-semibold">{oracle.oracleName}</td>
+                    <td className="border px-4 py-2">${oracle.price}</td>
                   </tr>
                 ))}
                 <tr className="text-center">
-                  <td className="border px-4 py-2">Average Price</td>
-                  <td className="border px-4 py-2">{averagePrice}</td>
+                  <td className="border px-4 py-2 font-semibold">Average Price</td>
+                  <td className="border px-4 py-2">${averagePrice}</td>
                 </tr>
               </tbody>
             </table>
