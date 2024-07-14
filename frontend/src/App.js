@@ -10,7 +10,7 @@ function App() {
   const fetchPrice = async (crypto) => {
     try {
       const response = await axios.get(`http://localhost:5000/api/price/${crypto}`);
-      setPrice(response.data.price);
+      setPrice(response.data.pythPrice);
       setLoading(false);
       console.log(response, price)
     } catch (error) {
