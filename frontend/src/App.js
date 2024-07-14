@@ -5,12 +5,12 @@ function App() {
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCrypto, setSelectedCrypto] = useState('ETH'); // Default to BTC
+  const [selectedCrypto, setSelectedCrypto] = useState('ETH');
 
   const fetchPrice = async (crypto) => {
     try {
       const response = await axios.get(`http://localhost:5000/api/price/${crypto}`);
-      setPrice(response.data.pythPrice);
+      setPrice(response.data.averagePrice);
       setLoading(false);
       console.log(response, price)
     } catch (error) {
@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     fetchPrice(selectedCrypto); // Fetch price initially
-    const interval = setInterval(() => fetchPrice(selectedCrypto), 30000); // Refresh price every 30 seconds
+    const interval = setInterval(() => fetchPrice(selectedCrypto), 8000); // Refresh price every 8 seconds
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [selectedCrypto]);
@@ -55,7 +55,7 @@ function App() {
         ) : (
           <div className="text-center">
             <h2 className="text-3xl font-semibold mb-2">{selectedCrypto}/USD: ${price}</h2>
-            <p className="text-gray-500 mt-2">Updated every 30 seconds</p>
+            <p className="text-gray-500 mt-2">Updated every 8 seconds</p>
           </div>
         )}
       </div>
