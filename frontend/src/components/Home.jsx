@@ -6,7 +6,7 @@ const Home = () => {
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCrypto, setSelectedCrypto] = useState("ETH");
+  const [selectedCrypto, setSelectedCrypto] = useState("SOL");
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -19,7 +19,6 @@ const Home = () => {
         `http://localhost:5000/api/price/${crypto}`
       );
       setPrice(response.data.averagePrice);
-      console.log(crypto);
       setLoading(false);
     } catch (error) {
       setError("Failed to fetch price data");
@@ -76,6 +75,13 @@ const Home = () => {
           >
             <option value="ETH">Ethereum (ETH)</option>
             <option value="BTC">Bitcoin (BTC)</option>
+            <option value="SOL">Solana (SOL)</option>
+            <option value="MATIC">Polygon (MATIC)</option>
+            <option value="BNB">Binance Coin (BNB)</option>
+            <option value="LINK">Chainlink (LINK)</option>
+            <option value="DAI">Dai (DAI)</option>
+            <option value="SAND">The Sandbox (SAND)</option>
+            <option value="UNI">Uniswap (UNI)</option>
             {/* Add more options for other cryptocurrencies as needed */}
           </select>
         </div>

@@ -1,12 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const fetchPythPrice = require("./oracles/pythOracle");
-const pythPriceIds = require("./priceIDs/pythPriceIDs");
 const fetchChainlinkPrice = require("./oracles/chainlinkOracle");
+const fetchBandProtocolPrice = require("./oracles/bandOracle");
+const pythPriceIds = require("./priceIDs/pythPriceIDs");
 const chainlinkPriceIds = require("./priceIDs/chainlinkPriceIDs");
-const chainlinkProviderExtensions = require("./utils/chainlinkProviderExtensions");
 const calculateAveragePrice = require("./utils/calculateAveragePrice");
-const fetchBandProtocolPrice = require('./oracles/bandOracle')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,25 +24,20 @@ app.get("/api/price/:crypto", async (req, res) => {
     const pythPrice = await fetchPythPrice(pythPriceIds[crypto]);
     // Fetch the latest price using the Price ID from the chainlink network
     const chainlinkPrice = await fetchChainlinkPrice(
-      `https://rpc.ankr.com/${chainlinkProviderExtensions[crypto]}`,
+      `https://rpc.ankr.com/eth`,
       chainlinkPriceIds[crypto]
     );
     // Fetch the latest from the Band Protocol
     const bandPrice = await fetchBandProtocolPrice(crypto);
 
     // Calculate the average price
-    const averagePrice = calculateAveragePrice([pythPrice, chainlinkPrice, bandPrice]);
+    const averagePrice = calculateAveragePrice([
+      pythPrice,
+      chainlinkPrice,
+      bandPrice,
+    ]);
 
     res.json({ averagePrice, pythPrice, chainlinkPrice, bandPrice });
-
-    console.log(
-      "pythPrice is " +
-        pythPrice +
-        ". chainlinkPrice is " +
-        chainlinkPrice + ". The Band Price is " + bandPrice +
-        ". The average is " +
-        averagePrice
-    );
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch price data" });
   }

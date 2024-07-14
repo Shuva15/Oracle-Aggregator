@@ -8,7 +8,6 @@ async function fetchBandProtocolPrice(crypto) {
   try {
     const rate = await client.getReferenceData([`${crypto}/USD`]);
     const price = rate[0].rate;
-    console.log(price);
     return price;
   } catch (error) {
     console.error("Error fetching Band Protocol data:", error);

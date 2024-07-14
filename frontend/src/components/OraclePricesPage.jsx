@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const OraclePricesPage = () => {
@@ -38,6 +38,7 @@ const OraclePricesPage = () => {
 
   return (
     <div className="min-h-screen bg-[#DEF9C4] text-gray-800 flex flex-col items-center justify-center p-4">
+      <button className="absolute top-0 left-0 mt-4 ml-4 px-4 py-2 bg-[#468585] text-[#DEF9C4] rounded-md hover:bg-gray-700"><Link to="/">Back</Link></button>
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-6">
         <h1 className="text-4xl font-bold mb-6 text-center text-[#468585]">
           Prices from Oracles
