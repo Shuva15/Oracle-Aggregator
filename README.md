@@ -46,7 +46,9 @@ View the average price fetched from Pyth, Chainlink, and Band Protocol oracles.
 **Oracles**: Pyth, Chainlink, Band Protocol
 
 # Screenshots
+![React App - Brave 15-07-2024 00_32_54](https://github.com/user-attachments/assets/cffbc0b7-dcc9-4c9d-8a69-4a3ac0264e03)
 
+![React App - Brave 15-07-2024 00_33_05](https://github.com/user-attachments/assets/fc473abe-1c0f-4026-89fd-8ba49796a6c8)
 
 
 # Contributing
