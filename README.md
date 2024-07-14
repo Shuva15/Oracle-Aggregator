@@ -10,29 +10,29 @@ Oracle Aggregator is a web application that fetches and displays cryptocurrency 
    git clone https://github.com/yourusername/oracle-aggregator.git
    cd oracle-aggregator
 
-Install dependencies for the backend:
+2. Install dependencies for the backend:
 
-bash
-cd backend
-npm install
+    ```bash
+    cd backend
+    npm install
 
-Install dependencies for the frontend:
+3. Install dependencies for the frontend:
 
-bash
-cd frontend
-npm install
+    ```bash
+    cd frontend
+    npm install
 
-Start the backend server:
+4. Start the backend server:
 
-bash
-cd backend
-node server.js
+    ```bash
+    cd backend
+    node server.js
 
-Start the frontend server:
+5. Start the frontend server:
 
-bash
-cd frontend
-npm start
+    ```bash
+    cd frontend
+    npm start
 
 # Usage
 
